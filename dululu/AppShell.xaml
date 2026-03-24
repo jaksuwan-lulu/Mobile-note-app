@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="dululu.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:dululu.Views"
+    Shell.FlyoutBehavior="Disabled" 
+    Title="dululu"
+    BackgroundImageSource="Resources/Images/bg.png">
+
+    <TabBar>
+        <ShellContent
+            Title="หน้าหลัก"
+            ContentTemplate="{DataTemplate local:BooklistHomePage}"           
+            Route="MainPage"
+            Icon="home.png"/>
+
+        <Tab Title="หมวดหมู่" Icon="book.png">
+            <ShellContent
+                Title="มังงะ"
+                ContentTemplate="{DataTemplate local:CategoryPage}"
+                Route="CategoryPage"
+                Icon="dotnet_bot.png"/>
+            <ShellContent
+                Title="มังฮวา"
+                ContentTemplate="{DataTemplate local:CategoryPage}"
+                Route="CategoryPage"
+                Icon="dotnet_bot.png"/>
+            <ShellContent
+                Title="นิยาย"
+                ContentTemplate="{DataTemplate local:CategoryPage}"
+                Route="CategoryPage"
+                Icon="dotnet_bot.png"/>
+        </Tab>
+    </TabBar>
+</Shell>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="dululu.Views.AddOrUpdateBookPage"
+             xmlns:viewmodel="clr-namespace:dululu.ViewModels"
+             x:DataType="viewmodel:AddOrUpdateBookPageViewmodel"
+             xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:models="clr-namespace:dululu.Models"
+             xmlns:controls="clr-namespace:dululu.CustomControls"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Home" Command="{Binding NavigateToHomeCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    
+    <StackLayout>
+        <CollectionView IsVisible="{Binding ShowErrors}" ItemsSource="{Binding Errors}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Error">
+                    <VerticalStackLayout>
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding Property}" FontAttributes="Bold" TextColor="IndianRed"></Label>
+                            <Label Text="{Binding Value}" TextColor="IndianRed"></Label>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <VerticalStackLayout Margin="0,10,0,0">
+            <inputLayout:SfTextInputLayout Hint="Book Title">
+                <Entry Text="{Binding AddBookModel.Title}"/>
+            </inputLayout:SfTextInputLayout>
+            <BoxView></BoxView>
+
+            <inputLayout:SfTextInputLayout Hint="Book Category">
+                <Picker SelectedItem="{Binding AddBookModel.Category, Mode=TwoWay}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type models:BookCategory}">
+                            <x:Static Member="models:BookCategory.Novel" />
+                            <x:Static Member="models:BookCategory.Manga" />
+                            <x:Static Member="models:BookCategory.Manhwa" />
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </inputLayout:SfTextInputLayout>
+            <inputLayout:SfTextInputLayout Hint="Book Description">
+                <Entry Text="{Binding AddBookModel.Description}"/>
+            </inputLayout:SfTextInputLayout>
+            <BoxView></BoxView>
+
+            <HorizontalStackLayout>
+                <inputLayout:SfTextInputLayout WidthRequest="200">
+                    <Button Text="Browse Image" Command="{Binding SelectImageCommand}" HeightRequest="50"></Button>
+                </inputLayout:SfTextInputLayout>
+                <inputLayout:SfTextInputLayout WidthRequest="200">
+                    <Image Source="{Binding ImageSourceFile}"  WidthRequest="100" HeightRequest="150"/>
+                </inputLayout:SfTextInputLayout>
+            </HorizontalStackLayout>
+            <BoxView></BoxView>
+            <Button Text="Save Data" Margin="10" Command="{Binding SaveDataCommand}"></Button>
+        </VerticalStackLayout>
+    </StackLayout>    
+    
+    
+    
+ 
+</ContentPage>

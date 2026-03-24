@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="dululu.Views.BookDetailsPage"
+             xmlns:viewmodel="clr-namespace:dululu.ViewModels"
+             x:DataType="viewmodel:BookDetailsPageViewmodel"
+             xmlns:controls="clr-namespace:dululu.CustomControls"
+             Title="{Binding Title}">
+
+
+    <ScrollView>
+        <VerticalStackLayout Margin="0,10,0,0">
+            
+            <Frame>
+
+                <VerticalStackLayout>
+                    <controls:CustomImageControl Base64Source="{Binding BookModel.Image}" WidthRequest="200" HeightRequest="300"/>
+                    <Frame BorderColor="Plum" Margin="0,20,0,0">
+                        <VerticalStackLayout Spacing="10" Margin="0,0,0,0">
+                            <Label Text="Book Name" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18" ></Label>
+                            <Label Text="{Binding BookModel.Title}" HorizontalOptions="CenterAndExpand" FontAttributes="None" FontSize="18"></Label>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <Frame>
+                        <VerticalStackLayout Spacing="20">
+                            <Label Text="Book Category" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18"></Label>
+                            <Label Text="{Binding BookModel.Category}" HorizontalOptions="CenterAndExpand" FontSize="18" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <Frame>
+                        <VerticalStackLayout Spacing="20">
+                            <Label Text="Book Description" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18"></Label>
+                            <Label Text="{Binding BookModel.Description}" HorizontalOptions="CenterAndExpand" FontSize="18"></Label>
+                        </VerticalStackLayout>
+                    </Frame>
+                    <Button x:Name="btnSharePage" Text="Share"
+                            Clicked="btnSharePage_Clicked" />
+                </VerticalStackLayout>
+                
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

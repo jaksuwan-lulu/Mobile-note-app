@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="dululu.Views.CategoryPage"
+            xmlns:models="clr-namespace:dululu.Models"
+             Title="{Binding Title}"
+             xmlns:controls="clr-namespace:dululu.CustomControls"
+             x:Name="catPage"
+             BackgroundImageSource="Resources/Images/bgtwo.png">
+
+
+    
+    <ScrollView>
+        <CollectionView ItemsSource="{Binding Books}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="5"                         
+                            Margin="5"                           
+                            Background="White"
+                            >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <controls:CustomImageControl Base64Source="{Binding Image}" 
+                                                         WidthRequest="80" HeightRequest="100"
+                                                         Grid.Column="0" />
+                            <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="{Binding Title}" FontAttributes="Bold" />
+                                
+                            </StackLayout>
+                            
+                        </Grid>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                        Command="{Binding Source={x:Reference catPage}, Path=BindingContext.SelectBookCommand}" 
+                                    CommandParameter="{Binding .}" />
+                        </Border.GestureRecognizers>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
+</ContentPage>
